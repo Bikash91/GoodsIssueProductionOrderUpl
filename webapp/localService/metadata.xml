@@ -1,0 +1,56 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWMS_UPL_GOODS_ISSUE_PO_SRV" sap:schema-version="1" xml:lang="en">
+			<EntityType Name="GoodsIssueHeader" sap:content-version="1">
+				<Key><PropertyRef Name="Reservationno"/></Key><Property Name="Ponumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Order"/><Property Name="Refdocno" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Reference"/><Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="255" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Message"/><Property Name="Reservationno" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Reservation"/><NavigationProperty Name="GoodsIssueItemSet" Relationship="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueHeaderItem"
+					FromRole="FromRole_GoodsIssueHeaderItem" ToRole="ToRole_GoodsIssueHeaderItem"/></EntityType>
+			<EntityType Name="GoodsIssueItem" sap:content-version="1">
+				<Key><PropertyRef Name="Reservationno"/></Key><Property Name="Storoagebin" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Storage Bin"/><Property Name="Availablestock" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Available stock"/><Property Name="Destinationbin" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Destination Bin"/><Property Name="Resitem" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Item"/><Property Name="Ponumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Order"/><Property Name="Reservationno" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Reservation"/><Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Warehouse No."/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Material"/><Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Plant"/><Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Quantity in UnE"/><Property Name="Storagelocation" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Stor. Location"/><Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:semantics="unit-of-measure" sap:label="Unit of Entry"/><Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Batch"/></EntityType>
+			<EntityType Name="CheckBin" sap:content-version="1">
+				<Key><PropertyRef Name="Storoagebin"/><PropertyRef Name="Material"/><PropertyRef Name="Batch"/><PropertyRef Name="Ponumber"/></Key><Property Name="Reservationno" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Reservation"/><Property Name="Storoagebin" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Storage Bin"/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Material"/><Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Quantity in UnE"/><Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:semantics="unit-of-measure" sap:label="Unit of Entry"/><Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Batch"/><Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Warehouse No."/><Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Plant"/><Property Name="Storagelocation" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Stor. Location"/><Property Name="Availablestock" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Available stock"/><Property Name="Ponumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Order"/></EntityType>
+			<Association Name="GoodsIssueHeaderItem" sap:content-version="1"><End Type="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueHeader" Multiplicity="1" Role="FromRole_GoodsIssueHeaderItem"/><End Type="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueItem" Multiplicity="*" Role="ToRole_GoodsIssueHeaderItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_GoodsIssueHeaderItem"><PropertyRef Name="Reservationno"/></Principal>
+					<Dependent Role="ToRole_GoodsIssueHeaderItem"><PropertyRef Name="Reservationno"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZWMS_UPL_GOODS_ISSUE_PO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="GoodsIssueHeaderSet" EntityType="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueHeader" sap:content-version="1"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false"/><EntitySet Name="GoodsIssueItemSet" EntityType="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueItem" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false"/><EntitySet Name="CheckBinSet" EntityType="ZWMS_UPL_GOODS_ISSUE_PO_SRV.CheckBin" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false"/>
+				<AssociationSet Name="GoodsIssueHeaderItemSet" Association="ZWMS_UPL_GOODS_ISSUE_PO_SRV.GoodsIssueHeaderItem" deletable="false"
+					creatable="false" updatable="false"><End EntitySet="GoodsIssueHeaderSet" Role="FromRole_GoodsIssueHeaderItem"/><End EntitySet="GoodsIssueItemSet" Role="ToRole_GoodsIssueHeaderItem"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_GOODS_ISSUE_PO_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_GOODS_ISSUE_PO_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,93 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:ci="com.sap.upl.GoodsIssueProductionOrder.controller"
+	controllerName="com.sap.upl.GoodsIssueProductionOrder.controller.GoodsIssueProduction" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>title}" id="page" busy="{settingsModel>/busy}" showHeader="false">
+		<!--<headerContent>
+			<ToggleButton text="{i18n>language}" type="Emphasized" tooltip="{i18n>changeLan}" enabled="true" pressed="true" press="onChangeLanguage"/>
+		</headerContent>-->
+		<content>
+			<VBox>
+				<f:SimpleForm editable="true" id="idgoodsIssue" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="3" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						<Label text="{i18n>productionOrder}" design="Bold" required="true"/>
+						<Input id="prnumber" name="PRNumber" maxLength="12" required="true" value="{goodsIssueModel>/Ponumber}" placeholder="{i18n>productionOrder}"
+							change="onChangeEvnt"></Input>
+						<Label text="{i18n>reservationNo}" design="Bold" required="true"/>
+						<Input value="{goodsIssueModel>/Reservationno}" name="Reservation" id="idReservation" maxLength="10" placeholder="{i18n>reservationNo}"
+							required="true" editable="false"></Input>
+						<Label text="{i18n>gs1}" design="Bold"/>
+						<Input placeholder="{i18n>gs1}" visible="{settingsModel>/GS1Visible}" value="{settingsModel>/GS1Value}" id="gs1" name="GS1"
+							change="onChangeEvnt"/>
+						<Label text="{i18n>itemNo}" design="Bold" required="true"/>
+						<Input value="{goodsIssueModel>/Material}" id="idMaterial" name="Material" maxLength="18" placeholder="{i18n>itemNo}" change="onChangeEvnt"
+							required="true" editable="{settingsModel>/gsPropertyenable}"></Input>
+						<Label text="{i18n>batch}" design="Bold" required="true"/>
+						<Input change="onChangeEvnt" value="{goodsIssueModel>/Batch}" visible="{settingsModel>/showBatch}" maxLength="10" required="true"
+							name="Batch" id="batch" placeholder="{i18n>batch}" editable="{settingsModel>/gsPropertyenable}"></Input>
+						<Label text="{i18n>quantity}" design="Bold" required="true"/>
+						<Input maxLength="13" type="Number" value="{goodsIssueModel>/Quantity}" required="true" placeholder="{i18n>quantity}" name="Quantity"
+							id="quant" change="onChangeEvnt" editable="{settingsModel>/gsPropertyenable}"></Input>
+						<Label text="{i18n>issueBin}" design="Bold" required="true"/>
+						<!--<Input value="{goodsIssueModel>/Storoagebin}" maxLength="10" id="issueBin" required="true" name="IssueBin" placeholder="{i18n>issueBin}"
+							change="onChangeEvnt"></Input>-->
+						<Input name="IssueBin" required="true" maxLength="10" id="issueBin" type="Text" textFormatMode="Key" showValueHelp="true"
+							placeholder="{i18n>issueBin}" valueHelpRequest="handleValueHelpRequest" suggestionItems="{path: '/GetBinSet'}"
+							value="{goodsIssueModel>/Storoagebin}" change="onChangeEvnt">
+							<suggestionItems>
+								<core:ListItem key="{Bin}" text="{Bin}"/>
+							</suggestionItems>
+						</Input>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<VBox >
+				<Table id="idDOItem" inset="false" alternateRowColors="true" items="{poItemData>/GoodsIssueItemSet}" noDataText="{i18n>nodata}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="{i18n>items}" level="H2" id="tabletitle"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://add" type="Emphasized" press="addLineItem"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column demandPopin="true">
+							<Label design="Bold" textAlign="Left" text="{i18n>itemNo}"/>
+						</Column>
+						<Column demandPopin="true">
+							<Label design="Bold" textAlign="Left" text="{i18n>batch}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>quantity}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>issueBin}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>action}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<Text text="{poItemData>Material}"/>
+								<Text text="{poItemData>Batch}"/>
+								<Text text="{poItemData>Quantity}"/>
+								<Text text="{poItemData>Storoagebin}"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>delete}" type="Reject" press="onDeleteLineItem"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>post}" tooltip="{i18n>post}" press="onPressPost" icon="sap-icon://post" type="Emphasized"
+					enabled="{settingsModel>/enablePost}"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
